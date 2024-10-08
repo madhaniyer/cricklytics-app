@@ -2,12 +2,12 @@ import { ReactNode } from 'react';
 
 export function AuthPageLayout({children} : {children: ReactNode }) {
   return (
-    <div className='flex min-h-full flex-col justify-center pt-10 sm:px-6 lg:px-8'>
-      <div className='sm:mx-auto sm:w-full sm:max-w-md'>
-        <div className='bg-white py-8 px-4 shadow-xl ring-1 ring-gray-900/10 sm:rounded-lg sm:px-10 dark:bg-white dark:text-gray-900'>
-          <div className='-mt-8'>
+    <div className='flex h-[90vh] flex-col justify-center pt-10 sm:px-6 lg:px-8'>
+      <div className='sm:mx-auto sm:w-full sm:max-w-lg'>
+        <div className='bg-white shadow-xl ring-1 ring-gray-900/10 sm:rounded-lg  dark:bg-white dark:text-gray-900'>
+          
             { children }
-          </div>
+
         </div>
       </div>
     </div>

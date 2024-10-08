@@ -3,7 +3,7 @@ app OpenSaaS {
     version: "^0.14.0"
   },
 
-  title: "My Open SaaS App",
+  title: "Criklytics",
 
   head: [
         "<meta property='og:type' content='website' />",
