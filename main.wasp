@@ -61,8 +61,9 @@ app OpenSaaS {
       // }
     },
     onAfterSignup: import { onAfterSignup } from "@src/auth/hooks",
-    onAuthFailedRedirectTo: "/login",
-    onAuthSucceededRedirectTo: "/demo-app",
+    onAuthFailedRedirectTo: "/",
+    //onAuthSucceededRedirectTo: "/demo-app",
+    onAuthSucceededRedirectTo: "/live-scores",
   },
 
   db: {
@@ -90,13 +91,13 @@ app OpenSaaS {
   },
 }
 
-route LandingPageRoute { path: "/", to: LandingPage }
-page LandingPage {
-  component: import LandingPage from "@src/landing-page/LandingPage"
-}
+// route LandingPageRoute { path: "/", to: LandingPage }
+// page LandingPage {
+//   component: import LandingPage from "@src/landing-page/LandingPage"
+// }
 
 //#region Auth Pages
-route LoginRoute { path: "/login", to: LoginPage }
+route LoginRoute { path: "/", to: LoginPage }
 page LoginPage {
   component: import Login from "@src/auth/LoginPage"
 }
@@ -146,10 +147,16 @@ action updateUserById {
 //#endregion
 
 //#region Demo AI App
-route DemoAppRoute { path: "/demo-app", to: DemoAppPage }
-page DemoAppPage {
+// route DemoAppRoute { path: "/demo-app", to: DemoAppPage }
+// page DemoAppPage {
+//   authRequired: true,
+//   component: import DemoAppPage from "@src/demo-ai-app/DemoAppPage"
+// }
+
+route LiveScoresRoute { path: "/live-scores", to: LiveScoresAppPage }
+page LiveScoresAppPage {
   authRequired: true,
-  component: import DemoAppPage from "@src/demo-ai-app/DemoAppPage"
+  component: import LiveScoresAppPage from "@src/live-scores-app/LiveScoresAppPage"
 }
 
 action generateGptResponse {

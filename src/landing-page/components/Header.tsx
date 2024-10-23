@@ -9,6 +9,10 @@ import logo from '../../client/static/logo.png';
 import DarkModeSwitcher from '../../client/components/DarkModeSwitcher';
 import DropdownUser from '../../user/DropdownUser';
 import { UserMenuItems } from '../../user/UserMenuItems';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { 
+  faBridgeWater
+} from "@fortawesome/free-solid-svg-icons";
 
 interface NavigationItem {
   name: string;
@@ -30,8 +34,9 @@ export default function Header({ navigation }: { navigation: NavigationItem[] })
             href='/'
             className='flex items-center -m-1.5 p-1.5 text-gray-900 duration-300 ease-in-out hover:text-yellow-500'
           >
-            <NavLogo />
-            <span className='ml-2 text-sm font-semibold leading-6 dark:text-white'>Your Saas</span>
+            {/* <NavLogo /> */}
+            <FontAwesomeIcon icon={faBridgeWater} className={`text-green-500 w-15 h-15 mr-4`} />
+            <span className='ml-2 text-sm font-semibold leading-6 dark:text-white'>IT Landscape</span>
           </a>
         </div>
         <div className='flex lg:hidden'>
@@ -62,7 +67,7 @@ export default function Header({ navigation }: { navigation: NavigationItem[] })
               <DarkModeSwitcher />
             </ul>
             {isUserLoading ? null : !user ? (
-              <Link to='/login'>
+              <Link to='/'>
                 <div className='flex justify-end items-center duration-300 ease-in-out text-gray-900 hover:text-yellow-500 dark:text-white'>
                   Log in <BiLogIn size='1.1rem' className='ml-1' />
                 </div>
@@ -106,7 +111,7 @@ export default function Header({ navigation }: { navigation: NavigationItem[] })
               </div>
               <div className='py-6'>
                 {isUserLoading ? null : !user ? (
-                  <Link to='/login'>
+                  <Link to='/'>
                     <div className='flex justify-start items-center duration-300 ease-in-out text-gray-900 hover:text-yellow-500 dark:text-white'>
                       Log in <BiLogIn size='1.1rem' className='ml-1' />
                     </div>
