@@ -7,27 +7,32 @@ import {
   faLock,
   faFile,
   faDollarSign,
+  faInfoCircle, // Importing the info icon for the description section
 } from "@fortawesome/free-solid-svg-icons";
 
+// Interface to define the structure of an Integration object
 interface Integration {
-  fromSystem?: string;
-  toSystem?: string;
-  integrationSummary: string;
+  fromSystem?: string; // Optional source system of the integration
+  toSystem?: string; // Optional target system of the integration
+  integrationSummary: string; // Summary of the integration
 }
 
+// Props interface for the DashboardCard component
 interface DashboardCardProps {
-  title: string;
-  inboundCount: number;
-  outboundCount: number;
-  paymentGateway: boolean;
-  authentication: string;
-  annualSpend: string;
-  documentStorage: string;
-  inboundIntegrations: Integration[];
-  outboundIntegrations: Integration[];
-  onClick: () => void;
+  title: string; // Title of the dashboard card
+  inboundCount: number; // Count of inbound integrations
+  outboundCount: number; // Count of outbound integrations
+  paymentGateway: boolean; // Indicates if a payment gateway is available
+  authentication: string; // Type of authentication used
+  annualSpend: string; // Annual spending amount
+  documentStorage: string; // Information about document storage
+  inboundIntegrations: Integration[]; // Array of inbound integration objects
+  outboundIntegrations: Integration[]; // Array of outbound integration objects
+  description: string; // Description of the dashboard card
+  onClick: () => void; // Function to handle click events on the card
 }
 
+// Functional component representing a dashboard card
 const DashboardCard: React.FC<DashboardCardProps> = ({
   title,
   inboundCount,
@@ -38,29 +43,30 @@ const DashboardCard: React.FC<DashboardCardProps> = ({
   documentStorage,
   inboundIntegrations,
   outboundIntegrations,
+  description, // Added description prop
   onClick,
 }) => {
-  const [hoveredSection, setHoveredSection] = useState<string | null>(null);
-  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const [hoveredSection, setHoveredSection] = useState<string | null>(null); // State to track which section is hovered
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null); // Ref to control the scrolling of the integration list
 
-  // Start scrolling when the integrations are displayed and have enough rows
+  // Effect to handle automatic scrolling of integration lists if they exceed the visible area
   useEffect(() => {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
-      const scrollHeight = container.scrollHeight;
-      const clientHeight = container.clientHeight;
+      const scrollHeight = container.scrollHeight; // Total height of the content
+      const clientHeight = container.clientHeight; // Height of the visible area
 
-      // Only start scrolling if the content exceeds the container height
+      // Start scrolling if content exceeds container height
       if (scrollHeight > clientHeight) {
         let totalScrolled = 0;
         const scrollStep = 0.5; // Adjust scroll speed here
         const scrollInterval = setInterval(() => {
           if (totalScrolled >= scrollHeight) {
-            clearInterval(scrollInterval); // Stop after one cycle
+            clearInterval(scrollInterval); // Stop scrolling after one cycle
             return;
           }
           container.scrollTop += scrollStep; // Scroll down
-          totalScrolled += scrollStep; // Keep track of total scrolled
+          totalScrolled += scrollStep; // Track total scrolled distance
         }, 30); // Adjust interval speed here
 
         return () => clearInterval(scrollInterval); // Clean up on unmount
@@ -70,69 +76,69 @@ const DashboardCard: React.FC<DashboardCardProps> = ({
 
   return (
     <div
-      className={`bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-xl shadow-lg hover:shadow-2xl 
-        transform hover:-translate-y-2 transition-all duration-400 cursor-pointer`}
-      onClick={onClick}
+      className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-xl shadow-lg hover:shadow-2xl 
+        transform hover:-translate-y-2 transition-all duration-400 cursor-pointer"
+      onClick={onClick} // Trigger onClick function when card is clicked
     >
       {/* Title Section */}
       <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-4">
-        {title}
+        {title} {/* Display the title of the card */}
       </h2>
 
       {/* Info Section */}
       <div className="space-y-4">
         {[
           {
-            icon: faArrowUp,
-            label: "Inbound",
-            value: inboundCount,
-            color: "text-blue-500",
-            integrations: inboundIntegrations,
+            icon: faArrowUp, // Icon for inbound count
+            label: "Inbound", // Label for inbound count
+            value: inboundCount, // Value for inbound count
+            color: "text-blue-500", // Color for inbound count
+            integrations: inboundIntegrations, // Inbound integrations array
           },
           {
-            icon: faArrowDown,
-            label: "Outbound",
-            value: outboundCount,
-            color: "text-purple-500",
-            integrations: outboundIntegrations,
+            icon: faArrowDown, // Icon for outbound count
+            label: "Outbound", // Label for outbound count
+            value: outboundCount, // Value for outbound count
+            color: "text-purple-500", // Color for outbound count
+            integrations: outboundIntegrations, // Outbound integrations array
           },
           {
-            icon: faCreditCard,
-            label: "Payment Gateway",
-            value: paymentGateway ? "Yes" : "No",
-            color: paymentGateway ? "text-green-500" : "text-red-500",
+            icon: faCreditCard, // Icon for payment gateway status
+            label: "Payment Gateway", // Label for payment gateway status
+            value: paymentGateway ? "Yes" : "No", // Display "Yes" or "No"
+            color: paymentGateway ? "text-green-500" : "text-red-500", // Conditional color based on status
           },
           {
-            icon: faLock,
-            label: "Authentication",
-            value: authentication,
-            color: "text-indigo-500",
+            icon: faLock, // Icon for authentication type
+            label: "Authentication", // Label for authentication type
+            value: authentication, // Value for authentication type
+            color: "text-indigo-500", // Color for authentication
           },
           {
-            icon: faFile,
-            label: "Document Storage",
-            value: documentStorage,
-            color: "text-gray-500",
+            icon: faFile, // Icon for document storage info
+            label: "Document Storage", // Label for document storage info
+            value: documentStorage, // Value for document storage info
+            color: "text-gray-500", // Color for document storage
           },
         ].map((item, index) => (
           <div
             key={index}
             className="relative flex items-center"
-            onMouseEnter={() => setHoveredSection(item.label)}
-            onMouseLeave={() => setHoveredSection(null)}
+            onMouseEnter={() => setHoveredSection(item.label)} // Set hovered section on mouse enter
+            onMouseLeave={() => setHoveredSection(null)} // Reset hovered section on mouse leave
           >
             <FontAwesomeIcon
               icon={item.icon}
-              className={`${item.color} w-5 h-5 mr-4`}
+              className={`${item.color} w-5 h-5 mr-4`} // Display the icon with appropriate color
             />
             <span className="flex-1 text-sm sm:text-base font-medium text-gray-700 dark:text-gray-300">
-              {item.label}
+              {item.label} {/* Display the label */}
             </span>
             <span className="text-sm sm:text-base font-semibold text-gray-900 dark:text-white">
-              {item.value}
+              {item.value} {/* Display the value */}
             </span>
 
-            {/* Hover Dialog */}
+            {/* Hover Dialog for showing integrations */}
             {hoveredSection === item.label && item.integrations && (
               <div
                 className="absolute top-1 left-1/2 w-80 max-w-xs sm:max-w-md p-4 
@@ -140,7 +146,7 @@ const DashboardCard: React.FC<DashboardCardProps> = ({
                           transition-all duration-300 transform -translate-x-1/2 z-50"
               >
                 <h3 className="text-sm font-semibold mb-3">
-                  {item.label} Integrations
+                  {item.label} Integrations {/* Title for integrations section */}
                 </h3>
 
                 <div className="overflow-hidden">
@@ -152,13 +158,13 @@ const DashboardCard: React.FC<DashboardCardProps> = ({
                       <thead>
                         <tr className="bg-gray-300 dark:bg-gray-600">
                           <th className="p-2 text-xs font-medium text-gray-800 dark:text-gray-300">
-                            From
+                            From {/* Column header for 'From' */}
                           </th>
                           <th className="p-2 text-xs font-medium text-gray-800 dark:text-gray-300">
-                            To
+                            To {/* Column header for 'To' */}
                           </th>
                           <th className="p-2 text-xs font-medium text-gray-800 dark:text-gray-300">
-                            Summary
+                            Summary {/* Column header for 'Summary' */}
                           </th>
                         </tr>
                       </thead>
@@ -169,13 +175,13 @@ const DashboardCard: React.FC<DashboardCardProps> = ({
                             className="odd:bg-gray-50 even:bg-gray-100 dark:odd:bg-gray-800 dark:even:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600"
                           >
                             <td className="p-2 text-xs text-gray-900 dark:text-gray-300">
-                              {int.fromSystem || "-"}
+                              {int.fromSystem || "-"} {/* Display source system or "-" if not available */}
                             </td>
                             <td className="p-2 text-xs text-gray-900 dark:text-gray-300">
-                              {int.toSystem || "-"}
+                              {int.toSystem || "-"} {/* Display target system or "-" if not available */}
                             </td>
                             <td className="p-2 text-xs text-gray-900 dark:text-gray-300">
-                              {int.integrationSummary}
+                              {int.integrationSummary} {/* Display integration summary */}
                             </td>
                           </tr>
                         ))}
@@ -193,19 +199,38 @@ const DashboardCard: React.FC<DashboardCardProps> = ({
       <div className="mt-6 flex flex-col sm:flex-row items-center justify-between">
         <div className="flex items-center mb-2 sm:mb-0">
           <FontAwesomeIcon
-            icon={faDollarSign}
+            icon={faDollarSign} // Icon for annual spend
             className="text-indigo-600 dark:text-indigo-400 w-6 h-6 mr-2"
           />
           <p className="text-xl sm:text-2xl font-extrabold text-indigo-600 dark:text-indigo-400">
-            {annualSpend.toLocaleString()}
+            {annualSpend.toLocaleString()} {/* Display annual spend formatted with commas */}
           </p>
         </div>
         <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-          (Annual Spend)
+          Annual Spend {/* Label for annual spend */}
         </span>
+      </div>
+
+      {/* Fixed-Size Scrollable Description Section */}
+      <div
+        className="mt-4 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg shadow-inner 
+                    overflow-y-auto h-24 flex space-x-3"
+      >
+        {/* Yellow Foreground Info Icon */}
+        <FontAwesomeIcon
+          icon={faInfoCircle}
+          className="text-blue-900 dark:text-yellow-400 w-6 h-6 flex-shrink-0"
+        />
+
+        {/* Description Text */}
+        <div className="overflow-y-auto h-full w-full">
+          <p className="text-sm text-gray-700 dark:text-gray-300 text-justify">
+            {description} {/* Display the description */}
+          </p>
+        </div>
       </div>
     </div>
   );
 };
 
-export default DashboardCard;
+export default DashboardCard; // Exporting the DashboardCard component

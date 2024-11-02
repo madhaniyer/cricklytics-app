@@ -12,6 +12,7 @@ interface Application {
   ANNUAL_SPEND: string;
   IMAGE_URL: string;
   documentStorage: string;
+  DESCRIPTION: String;
 }
 
 interface Integration {
@@ -120,6 +121,7 @@ const Dashboard: React.FC = () => {
                 authentication={app.AUTHENTICATION}
                 annualSpend={app.ANNUAL_SPEND}
                 documentStorage={app.DOCUMENT_STORAGE}
+                description={app.DESCRIPTION}
                 inboundIntegrations={getInboundIntegrations(app.SYSTEM_ID)} // Update to get inbound integration data
                 outboundIntegrations={getOutboundIntegrations(app.SYSTEM_ID)} // Update to get outbound integration data
                 onClick={() => setSelectedImage(app.IMAGE_URL)}

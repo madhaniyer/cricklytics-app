@@ -3,7 +3,7 @@ app OpenSaaS {
     version: "^0.14.0"
   },
 
-  title: "Criklytics",
+  title: "DOC - IT Landscape",
 
   head: [
         "<meta property='og:type' content='website' />",
