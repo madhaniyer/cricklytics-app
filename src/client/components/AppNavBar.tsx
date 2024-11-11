@@ -7,17 +7,17 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 import { HiBars3 } from 'react-icons/hi2';
 import logo from '../static/logo.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTree, faWater, faGlobe, faChartLine , faBridgeWater} from "@fortawesome/free-solid-svg-icons";
+import { faTree, faWater, faGlobe, faChartLine , faBridgeWater,faEquals} from "@fortawesome/free-solid-svg-icons";
 import DropdownUser from '../../user/DropdownUser';
 import { UserMenuItems } from '../../user/UserMenuItems';
 import { DocsUrl, BlogUrl } from '../../shared/common';
 import DarkModeSwitcher from './DarkModeSwitcher';
 
 const navigation = [
-  { name: 'Applications', icon: faGlobe, href: routes.LiveScoresRoute.build() },
-  { name: 'Integrations', icon: faTree, href: routes.LiveScoresRoute.build() },
+  { name: 'Applications', icon: faGlobe, href: routes.AppDashboardRoute.build() },
+  { name: 'Integrations', icon: faTree, href: routes.AppDashboardRoute.build() },
   { name: 'Admin', icon: faWater, href: routes.AdminRoute.build() },
-  { name: 'Analytics', icon: faChartLine, href: routes.LiveScoresRoute.build() },
+  { name: 'Analytics', icon: faChartLine, href: routes.AppDashboardRoute.build() },
 ];
 
 const NavLogo = () => <img className='h-8 w-8' src={logo} alt='Your SaaS App' />;
@@ -80,7 +80,8 @@ export default function AppNavBar() {
           <div className='flex items-center justify-between'>
             <a href='/' className='-m-1.5 p-1.5'>
               <NavLogo />
-            </a>
+              {/* <FontAwesomeIcon icon={faEquals} className='text-blue-600 w-15 h-15 mr-4 fa-sharp fa-solid fa-beat-fade' /> */}
+            </a>  
             <button
               type='button'
               className='-m-2.5 rounded-md p-2.5 text-gray-700 dark:text-white'

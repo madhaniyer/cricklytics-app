@@ -76,19 +76,19 @@ const Header = (props: {
 
         <ul className='flex items-center gap-2 2xsm:gap-4'>
           {/* <!-- Dark Mode Toggler --> */}
-          <DarkModeSwitcher />
+          {/* <DarkModeSwitcher /> */}
           {/* <!-- Dark Mode Toggler --> */}
 
           {/* <!-- Chat Notification Area --> */}
-          <MessageButton />
+          {/* <MessageButton /> */}
           {/* <!-- Chat Notification Area --> */}
         </ul>
 
-        <div className='flex items-center gap-3 2xsm:gap-7'>
+        {/* <div className='flex items-center gap-3 2xsm:gap-7'> */}
           {/* <!-- User Area --> */}
-          <DropdownUser user={props.user} />
+          {/* <DropdownUser user={props.user} /> */}
           {/* <!-- User Area --> */}
-        </div>
+        {/* </div> */}
       </div>
     </header>
   );

@@ -8,6 +8,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 interface Application {
   SYSTEM_ID: string;
   SYSTEM_NAME: string;
+  SYSTEM_GROUP_DESC: string;
   AUTHENTICATION: string;
   ANNUAL_SPEND: string;
   IMAGE_URL: string;
@@ -21,7 +22,7 @@ interface Integration {
   IS_PAYMENT_GATEWAY: boolean;
 }
 
-const Dashboard: React.FC = () => {
+const AppDashboard: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -144,4 +145,4 @@ const Dashboard: React.FC = () => {
   );
 };
 
-export default Dashboard;
+export default AppDashboard;

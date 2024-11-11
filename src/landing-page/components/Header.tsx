@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { HiBars3 } from 'react-icons/hi2';
 import { BiLogIn } from 'react-icons/bi';
 import { AiFillCloseCircle } from 'react-icons/ai';
@@ -24,7 +24,7 @@ export default function Header({ navigation }: { navigation: NavigationItem[] })
 
   const { data: user, isLoading: isUserLoading } = useAuth();
 
-  const NavLogo = () => <img className='h-8 w-8' src={logo} alt='Your SaaS App' />;
+  const NavLogo = () => <img className='h-8 w-8' src={logo} alt='DOC IT Landscape' />;
 
   return (
     <header className='absolute inset-x-0 top-0 z-50 dark:bg-boxdark-2'>
@@ -35,7 +35,7 @@ export default function Header({ navigation }: { navigation: NavigationItem[] })
             className='flex items-center -m-1.5 p-1.5 text-gray-900 duration-300 ease-in-out hover:text-yellow-500'
           >
             {/* <NavLogo /> */}
-            <FontAwesomeIcon icon={faBridgeWater} className={`text-green-500 w-15 h-15 mr-4`} />
+            <FontAwesomeIcon icon={faBridgeWater} className={`text-green-500 w-15 h-15 mr-4 fa-beat-fade`} />
             <span className='ml-2 text-sm font-semibold leading-6 dark:text-white'>IT Landscape</span>
           </a>
         </div>
@@ -67,11 +67,12 @@ export default function Header({ navigation }: { navigation: NavigationItem[] })
               <DarkModeSwitcher />
             </ul>
             {isUserLoading ? null : !user ? (
-              <Link to='/'>
-                <div className='flex justify-end items-center duration-300 ease-in-out text-gray-900 hover:text-yellow-500 dark:text-white'>
-                  Log in <BiLogIn size='1.1rem' className='ml-1' />
-                </div>
-              </Link>
+              // <Link to='/'>
+              //   <div className='flex justify-end items-center duration-300 ease-in-out text-gray-900 hover:text-yellow-500 dark:text-white'>
+              //     Log in <BiLogIn size='1.1rem' className='ml-1' />
+              //   </div>
+              // </Link>
+              <Fragment></Fragment>
             ) : (
               <DropdownUser user={user} />
             )}

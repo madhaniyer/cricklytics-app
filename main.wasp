@@ -63,7 +63,7 @@ app OpenSaaS {
     onAfterSignup: import { onAfterSignup } from "@src/auth/hooks",
     onAuthFailedRedirectTo: "/",
     //onAuthSucceededRedirectTo: "/demo-app",
-    onAuthSucceededRedirectTo: "/live-scores",
+    onAuthSucceededRedirectTo: "/app-dashboard",
   },
 
   db: {
@@ -153,10 +153,10 @@ action updateUserById {
 //   component: import DemoAppPage from "@src/demo-ai-app/DemoAppPage"
 // }
 
-route LiveScoresRoute { path: "/live-scores", to: LiveScoresAppPage }
-page LiveScoresAppPage {
+route AppDashboardRoute { path: "/app-dashboard", to: AppDashboardPage }
+page AppDashboardPage {
   authRequired: true,
-  component: import LiveScoresAppPage from "@src/live-scores-app/LiveScoresAppPage"
+  component: import AppDashboard from "@src/app-dashboard/AppDashboardPage"
 }
 
 action generateGptResponse {
@@ -266,7 +266,7 @@ job dailyStatsJob {
 route AdminRoute { path: "/admin", to: AnalyticsDashboardPage }
 page AnalyticsDashboardPage {
   authRequired: true,
-  component: import AnalyticsDashboardPage from "@src/admin/dashboards/analytics/AnalyticsDashboardPage"
+  component: import Dashboard from "@src/admin/dashboards/analytics/AnalyticsDashboardPage"
 }
 
 route AdminUsersRoute { path: "/admin/users", to: AdminUsersPage }

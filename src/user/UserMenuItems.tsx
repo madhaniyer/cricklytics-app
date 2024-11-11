@@ -15,22 +15,10 @@ export const UserMenuItems = ({ user, setMobileMenuOpen }: { user?: Partial<User
   return (
     <>
       <ul
-        className={cn('flex flex-col gap-5 border-b border-stroke py-4 dark:border-strokedark', {
-          'sm:px-6': path !== '/admin',
-          'px-6': path === '/admin',
-        })}
-      >
-        {path === '/' || path === '/admin' ? (
-          <li>
-            <Link
-              to='/live-scores'
-              className='flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-yellow-500'
-            >
-              <MdOutlineSpaceDashboard size='1.1rem' />
-              Live Scores
-            </Link>
-          </li>
-        ) : null}
+          className={cn('flex flex-col gap-5 border-b border-stroke py-4 dark:border-strokedark', {
+            'sm:px-6': path !== '/admin',
+            'px-6': path === '/admin',
+          })}>
         <li>
           <Link
             to='/account'

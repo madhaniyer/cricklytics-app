@@ -46,7 +46,10 @@ export default function App({ children }: { children: ReactNode }) {
     <>
       <div className='min-h-screen dark:text-white dark:bg-boxdark-2'>
         {isAdminDashboard ? (
-          <>{children}</>
+          <>
+            {shouldDisplayAppNavBar && <AppNavBar />}
+            <div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>{children}</div>
+          </>
         ) : (
           <>
             {shouldDisplayAppNavBar && <AppNavBar />}
