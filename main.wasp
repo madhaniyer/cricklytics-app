@@ -159,6 +159,13 @@ page AppDashboardPage {
   component: import AppDashboard from "@src/app-dashboard/AppDashboardPage"
 }
 
+route InflightDashboardRoute { path: "/in-flight", to: InFlightDashboardPage }
+page InFlightDashboardPage {
+  authRequired: true,
+  component: import InflightPage from "@src/inflight/InFlightDashboard"
+}
+
+
 action generateGptResponse {
   fn: import { generateGptResponse } from "@src/demo-ai-app/operations",
   entities: [User, Task, GptResponse]
