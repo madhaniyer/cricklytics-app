@@ -7,16 +7,15 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 import { HiBars3 } from 'react-icons/hi2';
 import logo from '../static/logo.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTree, faWater, faGlobe, faChartLine , faBridgeWater,faEquals, faTrafficLight, faPlane, faPlaneDeparture, faComputer} from "@fortawesome/free-solid-svg-icons";
+import { faTree, faWater, faGlobe, faChartLine, faBridgeWater, faCrow, faComputer } from "@fortawesome/free-solid-svg-icons";
 import DropdownUser from '../../user/DropdownUser';
 import { UserMenuItems } from '../../user/UserMenuItems';
-import { DocsUrl, BlogUrl } from '../../shared/common';
 import DarkModeSwitcher from './DarkModeSwitcher';
 
 const navigation = [
   { name: 'Applications', icon: faComputer, href: routes.AppDashboardRoute.build() },
-  { name: 'Integrations', icon: faTree, href: routes.AppDashboardRoute.build() },
-  { name: 'InFlight', icon: faPlaneDeparture, href: routes.InflightDashboardRoute.build() },
+  { name: 'IT Landscape', icon: faTree, href: routes.ITLandscapeRoute.build() },
+  { name: 'In Flight', icon: faCrow, href: routes.InflightDashboardRoute.build() },
   { name: 'Admin', icon: faWater, href: routes.AdminRoute.build() },
 ];
 
@@ -27,17 +26,17 @@ export default function AppNavBar() {
   const { data: user, isLoading: isUserLoading } = useAuth();
 
   return (
-    <header className='absolute inset-x-0 top-0 z-50 shadow sticky bg-white bg-opacity-50 backdrop-blur-lg backdrop-filter dark:border dark:border-gray-100/10 dark:bg-boxdark-2'>
+    <header className='absolute inset-x-0 top-0 z-50 shadow sticky bg-white bg-opacity-50 backdrop-blur-lg dark:border dark:border-gray-100/10 dark:bg-boxdark-2'>
       <nav className='flex items-center justify-between p-6 lg:px-8' aria-label='Global'>
         <div className='flex lg:flex-1'>
           <a href='/' className='-m-1.5 p-1.5'>
-            <FontAwesomeIcon icon={faBridgeWater} className='text-green-600 w-15 h-15 mr-4' />
+            <FontAwesomeIcon icon={faBridgeWater} className='text-green-600 w-10 h-10 hover:scale-110 transition-all duration-300' />
           </a>
         </div>
         <div className='flex lg:hidden'>
           <button
             type='button'
-            className='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 dark:text-white'
+            className='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 dark:text-white hover:bg-gray-200 hover:dark:bg-gray-700 transition-all duration-300'
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className='sr-only'>Open main menu</span>
@@ -49,9 +48,9 @@ export default function AppNavBar() {
             <a
               key={item.name}
               href={item.href}
-              className='text-sm font-semibold leading-6 text-gray-900 hover:text-green-700 dark:text-white transition duration-300 ease-in-out flex items-center gap-2'
+              className='text-sm font-semibold leading-6 text-gray-900 hover:text-purple-600 dark:hover:text-yellow-400 dark:text-white transition duration-300 ease-in-out flex items-center gap-2 hover:underline underline-offset-4'
             >
-              <FontAwesomeIcon icon={item.icon} className='w-5 h-5' />
+              <FontAwesomeIcon icon={item.icon} className='w-5 h-5 hover:scale-110 transition-transform duration-300' />
               {item.name}
             </a>
           ))}
@@ -60,11 +59,10 @@ export default function AppNavBar() {
           <ul className='flex justify-center items-center gap-2 sm:gap-4'>
             <DarkModeSwitcher />
           </ul>
-
           {isUserLoading ? null : !user ? (
             <a
               href={routes.LoginRoute.build()}
-              className='text-sm font-semibold leading-6 ml-4 flex items-center gap-1'
+              className='text-sm font-semibold leading-6 ml-4 flex items-center gap-1 text-gray-900 hover:text-green-700 dark:text-white hover:underline underline-offset-4 transition-all duration-300'
             >
               Log in <BiLogIn size='1.1rem' />
             </a>
@@ -80,11 +78,10 @@ export default function AppNavBar() {
           <div className='flex items-center justify-between'>
             <a href='/' className='-m-1.5 p-1.5'>
               <NavLogo />
-              {/* <FontAwesomeIcon icon={faEquals} className='text-blue-600 w-15 h-15 mr-4 fa-sharp fa-solid fa-beat-fade' /> */}
-            </a>  
+            </a>
             <button
               type='button'
-              className='-m-2.5 rounded-md p-2.5 text-gray-700 dark:text-white'
+              className='-m-2.5 rounded-md p-2.5 text-gray-700 dark:text-white hover:bg-gray-200 hover:dark:bg-gray-700 transition-all duration-300'
               onClick={() => setMobileMenuOpen(false)}
             >
               <AiFillCloseCircle className='h-6 w-6' aria-hidden='true' />
@@ -97,10 +94,10 @@ export default function AppNavBar() {
                   <a
                     key={item.name}
                     href={item.href}
-                    className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 flex items-center gap-2 text-gray-900 hover:bg-gray-50 dark:text-white hover:dark:bg-boxdark-2'
+                    className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 flex items-center gap-2 text-gray-900 hover:bg-gray-50 dark:text-white hover:dark:bg-gray-700 transition duration-300 ease-in-out'
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <FontAwesomeIcon icon={item.icon} className='w-5 h-5' />
+                    <FontAwesomeIcon icon={item.icon} className='w-5 h-5 hover:scale-110 transition-transform duration-300' />
                     {item.name}
                   </a>
                 ))}
@@ -108,7 +105,7 @@ export default function AppNavBar() {
               <div className='py-6'>
                 {isUserLoading ? null : !user ? (
                   <Link to='/'>
-                    <div className='flex justify-end items-center gap-1 text-gray-900 hover:text-green-700 dark:text-white transition duration-300 ease-in-out'>
+                    <div className='flex justify-end items-center gap-1 text-gray-900 hover:text-green-700 dark:text-white hover:underline underline-offset-4 transition-all duration-300'>
                       Log in <BiLogIn size='1.1rem' />
                     </div>
                   </Link>

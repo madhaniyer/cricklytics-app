@@ -31,7 +31,7 @@ app OpenSaaS {
       //   (RequestPasswordReset(Route|Page), PasswordReset(Route|Page), EmailVerification(Route|Page))
       email: {
         fromField: {
-          name: "Open SaaS App",
+          name: "DOC IT Landscape",
           email: "me@example.com"
         },
         emailVerification: {
@@ -165,6 +165,11 @@ page InFlightDashboardPage {
   component: import InflightPage from "@src/inflight/InFlightDashboard"
 }
 
+route ITLandscapeRoute { path: "/it-landscape", to: ITLandscapePage }
+page ITLandscapePage {
+  authRequired: true,
+  component: import ITLandscapePage from "@src/it-landscape/ITLandscape"
+}
 
 action generateGptResponse {
   fn: import { generateGptResponse } from "@src/demo-ai-app/operations",

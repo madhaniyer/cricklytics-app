@@ -11,6 +11,7 @@ interface Application {
   SYSTEM_GROUP_DESC: string;
   AUTHENTICATION: string;
   ANNUAL_SPEND: string;
+  SYSTEM_STATUS: string;
   IMAGE_URL: string;
   documentStorage: string;
   DESCRIPTION: String;
@@ -87,8 +88,12 @@ const AppDashboard: React.FC = () => {
           <input
             type="text"
             placeholder="Search applications..."
-            className="pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-700 
-            bg-gradient-to-r from-indigo-600 to-purple-400 text-white rounded-md
+            className="pl-10 pr-4 py-2 border 
+            border-gray-300 dark:border-gray-700
+            bg-gradient-to-r placeholder-white
+            from-green-600 to-green-500 
+            dark:from-green-600 dark:to-green-500 
+            text-white rounded-md
             focus:outline-none focus:ring focus:ring-indigo-300 
             transition duration-200 ease-in-out shadow-lg w-full md:w-1/2 lg:w-1/3 hover:shadow-xl"
             value={searchQuery}
@@ -105,6 +110,7 @@ const AppDashboard: React.FC = () => {
                 app.ANNUAL_SPEND.toLowerCase().includes(lowerCaseQuery) ||
                 app.AUTHENTICATION.toLowerCase().includes(lowerCaseQuery) ||
                 app.DOCUMENT_STORAGE.toLowerCase().includes(lowerCaseQuery) ||
+                app.SYSTEM_STATUS.toLowerCase().includes(lowerCaseQuery) ||
                 app.SYSTEM_GROUP_DESC.toLowerCase().includes(lowerCaseQuery) 
               );
             })
