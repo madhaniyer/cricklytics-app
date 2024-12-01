@@ -171,6 +171,12 @@ page ITLandscapePage {
   component: import ITLandscapePage from "@src/it-landscape/ITLandscape"
 }
 
+route MapITRoute { path: "/map-it", to: MapITPage }
+page MapITPage {
+  authRequired: true,
+  component: import MapITChart from "@src/map-it/MapITChart"
+}
+
 action generateGptResponse {
   fn: import { generateGptResponse } from "@src/demo-ai-app/operations",
   entities: [User, Task, GptResponse]

@@ -7,7 +7,7 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 import { HiBars3 } from 'react-icons/hi2';
 import logo from '../static/logo.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTree, faWater, faGlobe, faChartLine, faBridgeWater, faCrow, faComputer } from "@fortawesome/free-solid-svg-icons";
+import { faTree, faWater, faGlobe, faChartLine, faBridgeWater, faCrow, faComputer, faMap, faMapLocation, faPieChart } from "@fortawesome/free-solid-svg-icons";
 import DropdownUser from '../../user/DropdownUser';
 import { UserMenuItems } from '../../user/UserMenuItems';
 import DarkModeSwitcher from './DarkModeSwitcher';
@@ -16,7 +16,8 @@ const navigation = [
   { name: 'Applications', icon: faComputer, href: routes.AppDashboardRoute.build() },
   { name: 'IT Landscape', icon: faTree, href: routes.ITLandscapeRoute.build() },
   { name: 'In Flight', icon: faCrow, href: routes.InflightDashboardRoute.build() },
-  { name: 'Admin', icon: faWater, href: routes.AdminRoute.build() },
+  // { name: 'Admin', icon: faWater, href: routes.AdminRoute.build() },
+  { name: 'Map IT', icon: faGlobe, href: routes.MapITRoute.build() },
 ];
 
 const NavLogo = () => <img className='h-8 w-8' src={logo} alt='Your SaaS App' />;
